@@ -5,7 +5,7 @@ from discord.ext import commands
 
 client = commands.Bot(command_prefix = '.')
 
-travel = 0
+travel = 1
 choice = ""
 
 @client.event
@@ -18,16 +18,27 @@ async def on_reaction_add(reaction, user):
 		return
 
 	if travel == 1:
-		print("inside the travel == 1 loop")
+		# print("inside the travel == 1 loop")
 		if reaction.emoji == "\U0001f30e":
-			# send something
-			choice =  "americas"
+			choice =  "americas"	
+			# copy = choice
+			# return (choice, choice)
 		elif reaction.emoji == "\U0001f30d":
 			# await client.send("Alright, let's go to Africa or Europe!")
 			choice = "africa_europe"
+			# return "africa_europe"
+			# return (choice, choice)
 		elif reaction.emoji == "\U0001f30f":
 			# await client.send("Spiriting you to Asia or Australia!")
 			choice = "asia_australia"
+			# return (choice, choice)
+			# return "asia_australia"
+
+	def check(reaction, user):
+		return user == message.author
+	# print(choice)
+	return (choice, choice)
+	
 	'''	
 	if travel == 1:
 		choice = "temp"		
@@ -54,8 +65,6 @@ async def on_message(message):
 # faith is working on this rn
 @client.command(aliases=['travelbot', 'TravelBot'])
 async def launch_travel(ctx):	
-	travel = 1
-
 	# displays list of continent groups
 	question = await ctx.send("Where do you want to go?\n\
 	\U0001f30e - The Americas\n\
@@ -66,19 +75,20 @@ async def launch_travel(ctx):
 	for emoji in emojis:
 		await question.add_reaction(emoji)
 
-	# await ctx.send("outside the loop")
+	continent_react, discard = await client.wait_for('reaction_add', check=check, timeout=60.0)
 
-	if choice == "americas":
-		await ctx.send("You chose the Americas!")
-	elif choice == "africa_europe":
-		await ctx.send("You chose Africa or Europe!")
-	elif choice == "asia_australia":
-		await ctx.send("Let's go to Asia or Australia!")
+	print(continent_react)	
 
+	# print(continent_react)
+	await ctx.send(continent_react)
+	
 	'''
-	question.add_reaction("\U0001f30e")
-	question.add_reaction("\U0001f30d")
-	question.add_reaction("\U0001f30f")
+	if continent_react == "americas":
+		await ctx.send("You chose the Americas!")
+	elif continent_react == "africa_europe":
+		await ctx.send("You chose Africa or Europe!")
+	elif continent_react == "asia_australia":
+		await ctx.send("Let's go to Asia or Australia!")
 	'''
 	'''
 	await client.wait_for(emoji=["\U0001f30e", "\U0001f30d", "\U0001f30f"], message=question)
@@ -99,6 +109,6 @@ async def launch_travel(ctx):
 ''' some code'''
 
 # insert token below
-client.run("")
+client.run("ODA0OTEzMjQyNjM4OTA5NDUw.YBTP3w.gHD33wHbRqGK1MGLd2_Xbmdzs0A")
 
 
