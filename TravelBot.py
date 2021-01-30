@@ -9,17 +9,15 @@ client = commands.Bot(command_prefix='.') # establishing command prefix
 async def on_ready():
 	print("Online")
 
-""" call to the bot; bot prints "Where do you want to go?"
 
 # choose place, recipe, music
 @client.command()
 async def prm_choice(ctx):
-	await ctx.send("What would you like from this city?\n\U0001F9ED Place\n\U0001F37D Recipe\n\U0001F3B5 Music")
+	await ctx.send("What would you like from this city?\n\U0001F9ED Place\n\U0001F37D Recipe\n\U0001F3B5 Music\n\U0002708 Travel")
 	await message.add_reaction("\U0001F9ED")
 	await message.add_reaction("\U0001F37D")
 	await message.add_reaction("\U0001F3B5")
-
-"""
+	await message.add_reaction("\U0002708")
 
 # insert token below
 bot.run("token")
