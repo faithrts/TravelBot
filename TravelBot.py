@@ -11,7 +11,8 @@ async def on_ready():
 
 """ call to the bot; bot prints "Where do you want to go?"
 
-code
+testing testing
+
 
 """
 
