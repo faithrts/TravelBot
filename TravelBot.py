@@ -9,6 +9,12 @@ client = commands.Bot(command_prefix='.') # establishing command prefix
 async def on_ready():
 	print("Online")
 
+""" call to the bot; bot prints "Where do you want to go?"
+
+code
+
+"""
+
 # insert token below
 bot.run("token")
 
