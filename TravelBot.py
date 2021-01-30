@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 
 # client = discord.Client() establishing connection with discord
+TOKEN = ''
 
 client = commands.Bot(command_prefix='.') # establishing command prefix
 
@@ -15,7 +16,7 @@ code
 
 """
 
+print("hello")
+
 # insert token below
-bot.run("token")
-
-
+bot.run(TOKEN)
