@@ -384,4 +384,4 @@ zusxcm5umbYM_I_Gx5DxsiMCUvACLcB/s1600/Dan%2BBau6.jpeg"
 	await ctx.send("Oh! Your return flight is here! See you next time. \U00002708")
 
 # insert token below
-client.run("ODA0OTEzMjQyNjM4OTA5NDUw.YBTP3w.BpRinPSs42M3BnayIT2qbka3hCg")
+client.run("token")
