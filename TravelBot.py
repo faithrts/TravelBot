@@ -243,6 +243,61 @@ async def displayembed(ctx):
     )
     china_a_embed.set_thumbnail(url='https://upload.wikimedia.org/wikipedia/commons/1/17/Flickr_-_Shinrya_-_The_Forbidden_City.jpg')
 	
+	# MUSIC
+
+	# Americas
+	# Montreal music embed
+    mtl_m_embed = discord.Embed(
+        title = 'Montreal Chill', url = "https://www.youtube.com/watch?v=qAmTrTY4VLU&list=PLykeTwOyMORwxOC2JD4Bq3v5M94K5vW62"
+        description = 'Some chill montreal vibes.',
+        colour = discord.Colour.blue()
+    )
+    mtl_m_embed.set_thumbnail(url='https://www.outfrontmedia.ca/-/media/images/ofmcanada/markets/montreal/montreal-hero.jpg')
+
+	# Mexico music Embed
+    mex_m_embed = discord.Embed(
+        title = 'Mexican Mariachi Music', url = "https://www.youtube.com/watch?v=AZRbcVG6WEQ"
+        description = 'This is a selection of greatest hits from traditional and popular Mexican music. Waltzes, corridos and popular rancheras in a list without pauses to enjoy in any party or event.',
+        colour = discord.Colour.blue()
+    )
+    mex_m_embed.set_thumbnail(url='https://www.tripsavvy.com/thmb/-V4Uk1AFzhBey2DzN26GIwIj5xk=/1115x836/smart/filters:no_upscale()/mariachi_getty-5681abcf3df78ccc15b4e325.jpg')
+
+	# Cuba music Embed
+    cuba_m_embed = discord.Embed(
+        title = 'Cuban Classics', url = "https://goo.gl/maps/YXCuudKwAtYhUnY98"
+        description = 'Listen to some classic Cuban music, from salsa to rumba!',
+        colour = discord.Colour.blue()
+    )
+    cuba_m_embed.set_thumbnail(url='https://mentalitch.com/wp-content/uploads/2019/12/salsa-music-band-in-cuba.jpg')
+
+
+
+	# africa_europe
+	# Barcelona music Embed
+    barc_m_embed = discord.Embed(
+        title = 'Rumba Catalana', url = "https://www.youtube.com/watch?v=HiFFdCBSJr4&list=PL2l5qPra0uFFt0bsuIvgbJ2tG1F7STYKy"
+        description = 'The Catalan rumba is a genre of music that developed in Barcelona\'s Romani community beginning in the 1950s and 160s. Its rhythms are derived from the Andalusian flamenco rumba, with influences from Cuban music and rock and roll.',
+        colour = discord.Colour.blue()
+    )
+    barc_m_embed.set_thumbnail(url='https://www.eventosbarcelona.com/wp-content/uploads/flamencorumba.jpg')
+
+
+	# Cape Town area Embed
+    cape_m_embed = discord.Embed(
+        title = 'South African Traditional Music', url = "https://www.youtube.com/watch?v=A1PsDkKzi8M&list=PLhTIvz9wTTu5HQGI4myeSFW2lHwrJHkK4"
+        description = 'South Africa has a very broad range of styles ranging from marabi (which is the root of south African Jazz) to local highlife, reggae and Zulu choral music known as mbube.',
+        colour = discord.Colour.blue()
+    )
+    cape_m_embed.set_thumbnail(url='https://www.greyhound.co.za/wp-content/uploads/2018/09/120416041832-zulu-ceremony-horizontal-large-gallery.jpg')
+
+	# Rome area Embed
+    rome_m_embed = discord.Embed(
+        title = 'Best Italian Songs', url = "https://www.youtube.com/watch?v=2S7BvkDN0hw"
+        description = 'The music of Italy has traditionally been one of the cultural markers of Italian national and ethnic identity and holds an important position in society and in politics.',
+        colour = discord.Colour.blue()
+    )
+    rome_m_embed.set_thumbnail(url='https://i.ytimg.com/vi/aiENvviVSO4/maxresdefault.jpg')
+	
 
 # insert token below
 bot.run("token")
