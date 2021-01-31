@@ -50,7 +50,7 @@ async def launch_travel(ctx):
 	
 	continent_react = await client.wait_for('reaction_add', check=check, timeout=60.0)
 	continent = str(continent_react[0])
-	await asyncio.sleep(2)
+	await asyncio.sleep(1)
 
 	# the Americas
 	if continent == "\U0001f30e":		
@@ -58,12 +58,13 @@ async def launch_travel(ctx):
 		await ctx.send("The Americas it is!")
 		await ctx.send("_ _")
 
+		await asyncio.sleep(1)
 		question2_a = await ctx.send("Which city would you like to visit?\n\
 	\U0001f1e8\U0001f1e6 - Montréal, Canada\n\
 	\U0001f1f2\U0001f1fd - Mexico City, Mexico\n\
 	\U0001f1e8\U0001f1fa - Havana, Cuba")
 		
-		await asyncio.sleep(2)
+		await asyncio.sleep(1)
 		emoji2_a = ["\U0001f1e8\U0001f1e6","\U0001f1f2\U0001f1fd","\U0001f1e8\U0001f1fa"]
 		for emoji in emoji2_a:
 			await question2_a.add_reaction(emoji)
@@ -74,12 +75,13 @@ async def launch_travel(ctx):
 		await ctx.send("Spiriting you to Africa or Europe!")
 		await ctx.send("_ _")
 		
-		await asyncio.sleep(2)
+		await asyncio.sleep(1)
 		question2_b = await ctx.send("Which city would you like to visit?\n\
 	\U0001f1ff\U0001f1e6 - Cape Town, South Africa\n\
 	\U0001f1ea\U0001f1f8 - Barcelona, Spain\n\
 	\U0001f1ee\U0001f1f9 - Rome, Italy")
 
+		await asyncio.sleep(1)
 		emoji2_b = ["\U0001f1ff\U0001f1e6","\U0001f1ea\U0001f1f8","\U0001f1ee\U0001f1f9"]
 		for emoji in emoji2_b:
 			await question2_b.add_reaction(emoji)		
@@ -90,12 +92,13 @@ async def launch_travel(ctx):
 		await ctx.send("I hear Asia and Australia are lovely this time of year!")
 		await ctx.send("_ _")
 
-		await asyncio.sleep(2)
+		await asyncio.sleep(1)
 		question2_c = await ctx.send("Which city would you like to visit?\n\
 	\U0001f1e8\U0001f1f3 - Beijing, China\n\
 	\U0001f1f5\U0001f1ed - Manila, Philippines\n\
 	\U0001f1fb\U0001f1f3 - Hanoi, Vietnam")		
 
+		await asyncio.sleep(1)
 		emoji2_c = ["\U0001f1e8\U0001f1f3","\U0001f1f5\U0001f1ed","\U0001f1fb\U0001f1f3"]
 		for emoji in emoji2_c:
 			await question2_c.add_reaction(emoji)
@@ -326,14 +329,14 @@ _Forbidden_City.jpg"
 		music_thumb = "https://4.bp.blogspot.com/-x-xw0A2ZdWU/WHRQ-FpLpVI/AAAAAAAAEHY/298Z4F\
 zusxcm5umbYM_I_Gx5DxsiMCUvACLcB/s1600/Dan%2BBau6.jpeg"		
 
-	await asyncio.sleep(2)
+	await asyncio.sleep(1)
 	await ctx.send("_ _")
 	question3 = await ctx.send("What would you like from this city?\n\
 	\U0001f9ed - Area\n\
 	\U0001f37d - Food\n\
 	\U0001f3b5 - Music")
 
-	await asyncio.sleep(2)
+	await asyncio.sleep(1)
 	emoji3 = ["\U0001f9ed","\U0001f37d","\U0001f3b5"]
 	for emoji in emoji3:
 		await question3.add_reaction(emoji)
@@ -370,6 +373,7 @@ zusxcm5umbYM_I_Gx5DxsiMCUvACLcB/s1600/Dan%2BBau6.jpeg"
 		thumb = music_thumb
 		name = "Playlist"
 		
+	await asyncio.sleep(1)
 	await ctx.send("_ _")
 	await ctx.send("This might be of interest:")
 
@@ -386,7 +390,11 @@ zusxcm5umbYM_I_Gx5DxsiMCUvACLcB/s1600/Dan%2BBau6.jpeg"
 	
 	await asyncio.sleep(4)
 	await ctx.send("_ _")
-	await ctx.send("Oh! Your return flight is here! See you next time. \U00002708")
+	await ctx.send("Oh!")
+	await asyncio.sleep(1)
+	await ctx.send("Your return flight is here \U0001f605")
+	await asyncio.sleep(1)
+	await ctx.send("See you next time. \U00002708")
 
 # insert token below
 client.run("token")
