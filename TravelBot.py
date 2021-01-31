@@ -106,11 +106,11 @@ async def displayembed(ctx):
 	# africa_europe
 	# Barcelona food Embed
     barc_f_embed = discord.Embed(
-        title = 'Paella', url = "https://tastesbetterfromscratch.com/paella/"
-        description = 'You can make a delicious, authentic Paella–the most popular dish of Spain–in your own kitchen with simple ingredients like rice, saffron, vegetables, chicken, and seafood. Enjoy!',
+        title = 'Crema Catalana', url = "https://spanishsabores.com/homemade-spanish-crema-catalana-recipe/"
+        description = 'Crema Catalana (for those unfamiliar) is Spain’s version of creme brûlée. Or, as many Catalans would argue, creme brûlée is France’s version of Crema Catalana!',
         colour = discord.Colour.blue()
     )
-    barc_f_embed.set_thumbnail(url='https://tastesbetterfromscratch.com/wp-content/uploads/2020/04/Paella-7.jpg')
+    barc_f_embed.set_thumbnail(url='https://spanishsabores.com/wp-content/uploads/2016/01/Crema-Catalana-Recipe.jpg')
 
 
 	# Cape Town food Embed
