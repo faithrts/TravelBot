@@ -5,40 +5,30 @@ from discord.ext import commands
 
 client = commands.Bot(command_prefix = '.')
 
-travel = 1
-choice = ""
-
 @client.event
 async def on_ready():
 	print("Online")
+
+choice = ""
 
 @client.event
 async def on_reaction_add(reaction, user):
 	if user.bot:
 		return
+	'''
+	if reaction.emoji == "\U0001f30e":
+		choice =  "americas"	
+	elif reaction.emoji == "\U0001f30d":
+		choice = "africa_europe"
+	elif reaction.emoji == "\U0001f30f":
+		choice = "asia_australia"
 
-	if travel == 1:
-		# print("inside the travel == 1 loop")
-		if reaction.emoji == "\U0001f30e":
-			choice =  "americas"	
-			# copy = choice
-			# return (choice, choice)
-		elif reaction.emoji == "\U0001f30d":
-			# await client.send("Alright, let's go to Africa or Europe!")
-			choice = "africa_europe"
-			# return "africa_europe"
-			# return (choice, choice)
-		elif reaction.emoji == "\U0001f30f":
-			# await client.send("Spiriting you to Asia or Australia!")
-			choice = "asia_australia"
-			# return (choice, choice)
-			# return "asia_australia"
+	elif
 
-	def check(reaction, user):
-		return user == message.author
-	# print(choice)
-	return (choice, choice)
-	
+
+
+	return choice
+	'''
 	'''	
 	if travel == 1:
 		choice = "temp"		
@@ -75,24 +65,107 @@ async def launch_travel(ctx):
 	for emoji in emojis:
 		await question.add_reaction(emoji)
 
-	continent_react, discard = await client.wait_for('reaction_add', check=check, timeout=60.0)
-
-	print(continent_react)	
-
-	# print(continent_react)
-	await ctx.send(continent_react)
+	def check(reaction, user):
+		return not(user.bot)
 	
-	'''
-	if continent_react == "americas":
-		await ctx.send("You chose the Americas!")
-	elif continent_react == "africa_europe":
-		await ctx.send("You chose Africa or Europe!")
-	elif continent_react == "asia_australia":
-		await ctx.send("Let's go to Asia or Australia!")
-	'''
-	'''
-	await client.wait_for(emoji=["\U0001f30e", "\U0001f30d", "\U0001f30f"], message=question)
+	continent_react = await client.wait_for('reaction_add', check=check, timeout=60.0)
+	continent = str(continent_react[0])
+
+	# the Americas
+	if continent == "\U0001f30e":		
+		await ctx.send("_ _")		
+		await ctx.send("The Americas it is!")
+		await ctx.send("_ _")
 	
+		question2_a = await ctx.send("Which city would you like to visit?\n\
+	\U0001f1e8\U0001f1e6 - Montréal, Canada\n\
+	\U0001f1f2\U0001f1fd - Mexico City, Mexico\n\
+	\U0001f1e8\U0001f1fa - Havana, Cuba")
+
+		emoji2_a = ["\U0001f1e8\U0001f1e6","\U0001f1f2\U0001f1fd","\U0001f1e8\U0001f1fa"]
+		for emoji in emoji2_a:
+			await question2_a.add_reaction(emoji)
+
+	# Africa or Europe
+	elif continent == "\U0001f30d":
+		await ctx.send("_ _")
+		await ctx.send("Spiriting you to Africa or Europe!")
+		await ctx.send("_ _")
+	
+		question2_b = await ctx.send("Which city would you like to visit?\n\
+	\U0001f1ff\U0001f1e6 - Cape Town, South Africa\n\
+	\U0001f1ea\U0001f1f8 - Barcelona, Spain\n\
+	\U0001f1ee\U0001f1f9 - Rome, Italy")
+
+		emoji2_b = ["\U0001f1ff\U0001f1e6","\U0001f1ea\U0001f1f8","\U0001f1ee\U0001f1f9"]
+		for emoji in emoji2_b:
+			await question2_b.add_reaction(emoji)		
+	
+	# Asia and Australia
+	elif continent == "\U0001f30f":
+		await ctx.send("_ _")
+		await ctx.send("I hear Asia and Australia are lovely this time of year!")
+		await ctx.send("_ _")
+
+		question2_c = await ctx.send("Which city would you like to visit?\n\
+	\U0001f1e8\U0001f1f3 - Beijing, China\n\
+	\U0001f1f5\U0001f1ed - Manila, Philippines\n\
+	\U0001f1fb\U0001f1f3 - Hanoi, Vietnam")		
+
+		emoji2_c = ["\U0001f1e8\U0001f1f3","\U0001f1f5\U0001f1ed","\U0001f1fb\U0001f1f3"]
+		for emoji in emoji2_c:
+			await question2_c.add_reaction(emoji)
+
+	city_react = await client.wait_for('reaction_add', check=check, timeout=60.0)
+	city = str(city_react[0])
+
+	# Montréal, Canada
+	if city == "\U0001f1e8\U0001f1e6":
+		Place =
+		Recipe =
+		Music =
+	# Mexico City, Mexico
+	elif city == "\U0001f1f2\U0001f1fd":
+		Place =
+		Recipe =
+		Music =
+	# Havana, Cuba
+	elif city == "\U0001f1e8\U0001f1fa":
+		Place = 
+		Recipe = 
+		Music =
+	# Cape Town, South Africa
+	elif city == "\U0001f1ff\U0001f1e6":
+		Place =
+		Recipe =
+		Music =
+	# Barcelona, Spain
+	elif city == "\U0001f1ea\U0001f1f8":
+		Place =
+		Recipe =
+		Music =
+	# Rome, Italy
+	elif city == "\U0001f1ee\U0001f1f9":
+		Place =
+		Recipe =
+		Music =
+	# Beijing, China
+	elif city == "\U0001f1ea\U0001f1f8":
+		Place =
+		Recipe =
+		Music =
+	# Manila, Philippines
+	elif city == "\U0001f1f5\U0001f1ed":
+		Place =
+		Recipe =
+		Music =
+	# Hanoi, Vietnam
+	elif city == "\U0001f1fb\U0001f1f3":
+		Place =
+		Recipe =
+		Music =
+
+	'''
 	if reaction.emoji == "\U0001f30e":
 		await ctx.send("You chose the Americas!")
 	elif reaction.emoji == "\U0001f30d":
@@ -109,6 +182,6 @@ async def launch_travel(ctx):
 ''' some code'''
 
 # insert token below
-client.run("ODA0OTEzMjQyNjM4OTA5NDUw.YBTP3w.gHD33wHbRqGK1MGLd2_Xbmdzs0A")
+client.run("token")
 
 
