@@ -279,6 +279,6 @@ async def launch_travel(ctx):
 ''' some code'''
 
 # insert token below
-client.run("ODA0OTEzMjQyNjM4OTA5NDUw.YBTP3w.gDKXo0AqiyEff-Hy36_O6EUP9cU")
+client.run("token")
 
 
