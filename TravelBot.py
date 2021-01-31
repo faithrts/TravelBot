@@ -151,14 +151,12 @@ async def displayembed(ctx):
     viet_f_embed.set_thumbnail(url='https://www.recipetineats.com/wp-content/uploads/2019/04/Beef-Pho_6.jpg')
 
 	# China food Embed
-	### NEEDS TO BE UPDATED!!
     china_f_embed = discord.Embed(
-        title = 'Title', url = "https://www.seasonsandsuppers.ca/authentic-canadian-poutine-recipe/"
-        description = 'Description. Enjoy!',
+        title = 'Peking Duck', url = "https://cooking.nytimes.com/recipes/1019963-peking-duck-with-honey-and-five-spice-glaze"
+        description = 'Peking duck is a dish from Beijing that has been prepared since the Imperial era. The meat is characterized by its thin, crisp skin. Enjoy!',
         colour = discord.Colour.blue()
     )
-    china_f_embed.set_thumbnail(url='https://v1.nitrocdn.com/eSLhakvQipAhEWtksvxrnpAZbKWwysTe/assets/static/source/rev-744f298/wp-content/uploads/2014/01/new-poutine-1-1170x.jpg')
-
+    china_f_embed.set_thumbnail(url='https://static01.nyt.com/images/2019/01/28/dining/kc-peking-duck/kc-peking-duck-articleLarge-v2.jpg')
 
 
 # insert token below
