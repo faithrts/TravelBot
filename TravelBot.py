@@ -371,7 +371,7 @@ zusxcm5umbYM_I_Gx5DxsiMCUvACLcB/s1600/Dan%2BBau6.jpeg"
 		name = "Playlist"
 		
 	await ctx.send("_ _")
-	await ctx.send("This should be of interest:")
+	await ctx.send("This might be of interest:")
 
 	embed = discord.Embed(
 		title = title,
@@ -384,7 +384,7 @@ zusxcm5umbYM_I_Gx5DxsiMCUvACLcB/s1600/Dan%2BBau6.jpeg"
 
 	await ctx.send(embed=embed)
 	
-	await asyncio.sleep(5)
+	await asyncio.sleep(4)
 	await ctx.send("_ _")
 	await ctx.send("Oh! Your return flight is here! See you next time. \U00002708")
 
