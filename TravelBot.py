@@ -158,6 +158,91 @@ async def displayembed(ctx):
     )
     china_f_embed.set_thumbnail(url='https://static01.nyt.com/images/2019/01/28/dining/kc-peking-duck/kc-peking-duck-articleLarge-v2.jpg')
 
+	
+	# AREAS
+
+	# Americas
+	# Montreal area embed
+    mtl_a_embed = discord.Embed(
+        title = 'McGill University', url = "https://goo.gl/maps/7M5Qrc4YBpZnHzCGA"
+        description = 'Best place on earth!',
+        colour = discord.Colour.blue()
+    )
+    mtl_a_embed.set_thumbnail(url='https://www.ctvnews.ca/polopoly_fs/1.3872464.1522939278!/httpImage/image.jpg_gen/derivatives/landscape_1020/image.jpg')
+
+	# Mexico area Embed
+    mex_a_embed = discord.Embed(
+        title = 'Metropolitan Cathedral of Mexico City', url = "https://goo.gl/maps/ykqEm86xtAczJxbP7"
+        description = 'The Metropolitan Cathedral of the Assumption of the Most Blessed Virgin Mary into Heaven is the seat of the Catholic Archdiocese of Mexico. It is situated atop the former Aztec sacred precinct near the Templo Mayor on the northern side of the Plaza de la Constitución in Downtown Mexico City.',
+        colour = discord.Colour.blue()
+    )
+    mex_a_embed.set_thumbnail(url='https://www.tripsavvy.com/thmb/W_aFid36f3KdzI_Xkl_w40XeK44=/3936x2214/smart/filters:no_upscale()/TAM_5392-5c79a296c9e77c0001e98e59.jpg')
+
+	# Cuba area Embed
+    cuba_a_embed = discord.Embed(
+        title = 'Hotel Nacional de Cuba', url = "https://goo.gl/maps/YXCuudKwAtYhUnY98"
+        description = 'The Hotel Nacional de Cuba is a historic Spanish eclectic style hotel in Havana, Cuba, opened in 1930. Located on the sea front of the Vedado district, it stands on Taganana Hill, offering commanding views of the sea and the city.',
+        colour = discord.Colour.blue()
+    )
+    cuba_a_embed.set_thumbnail(url='https://www.beyondtheordinary.co.uk/wp-content/uploads/2019/06/Hotel-Nacional-Havana-Aerial-1600x1021.jpeg')
+
+
+
+	# africa_europe
+	# Barcelona area Embed
+    barc_a_embed = discord.Embed(
+        title = 'La Sagrada Familia', url = "https://goo.gl/maps/kUXNASg7vuts4DX99"
+        description = 'The Basílica de la Sagrada Família, also known as the Sagrada Família, is a large unfinished Roman Catholic minor basilica in the Eixample district of Barcelona, Catalonia, Spain. Designed by Spanish/Catalan architect Antoni Gaudí, his work on the building is part of a UNESCO World Heritage Site.',
+        colour = discord.Colour.blue()
+    )
+    barc_a_embed.set_thumbnail(url='https://images.adsttc.com/media/images/5cff/5ec5/284d/d16d/6a00/1111/large_jpg/1.jpg?1560239805')
+
+
+	# Cape Town area Embed
+    cape_a_embed = discord.Embed(
+        title = 'New Cape Point Lighthouse', url = "https://goo.gl/maps/d9CUjwTwrZdvAA8a8"
+        description = 'Check out one of the oldest lighthouses in South Africa! Explore the trails and enjoy oceanside views that run alongside this Cabo Tormentosa (Cape of Storms) as named by Bartolomeu Dias in the 15th century.',
+        colour = discord.Colour.blue()
+    )
+    cape_a_embed.set_thumbnail(url='https://www.lightphotos.net/photos/albums/userpics/10001/normal_170.jpg')
+
+
+	# Rome area Embed
+    rome_a_embed = discord.Embed(
+        title = 'Colosseum', url = "https://goo.gl/maps/Ce8B9F7kZsb4TkZB7"
+        description = 'The Colosseum, is an oval amphitheatre in the centre of the city of Rome, Italy, just east of the Roman Forum and is the largest ancient amphitheatre ever built, and is still the largest standing amphitheater in the world today, despite its age.',
+        colour = discord.Colour.blue()
+    )
+    rome_a_embed.set_thumbnail(url='https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Colosseo_2020.jpg/1200px-Colosseo_2020.jpg')
+
+
+
+	# asia_australia
+	# Philippines area Embed
+    phil_a_embed = discord.Embed(
+        title = 'Metro Manila', url = "https://goo.gl/maps/MsNe3y7wCS6jwQ8TA"
+        description = 'Metropolitan Manila, officially the National Capital Region, is the seat of government and one of three defined metropolitan areas in the Philippines.',
+        colour = discord.Colour.blue()
+    )
+    phil_a_embed.set_thumbnail(url='https://assets2.rappler.com/7EAAA4EC1FCC4212B62D7308E3FDBD59/img/55244883681A47EFB4856BFA207D7758/metro-manila-skyline-august-30-2017-002.jpg')
+
+
+	# Vietnam area Embed
+    viet_a_embed = discord.Embed(
+        title = 'Temple of Literature', url = "https://goo.gl/maps/pMhjRaE3CmrFzGQXA"
+        description = 'Văn Miếu is a temple dedicated to Confucius in Hanoi, northern Vietnam. The temple also hosts the Imperial Academy, Vietnam\'s first national university. The temple was built in 1070 at the time of Emperor Lý Thánh Tông. It is one of several temples in Vietnam which is dedicated to Confucius, sages and scholars.',
+        colour = discord.Colour.blue()
+    )
+    viet_a_embed.set_thumbnail(url='https://static.toiimg.com/photo/58747476.cms')
+
+	# China area Embed
+    china_a_embed = discord.Embed(
+        title = 'The Palace Museum', url = "https://goo.gl/maps/BojWyPDzis3YGTzm8"
+        description = 'The Palace Museum is a national museum housed in the Forbidden City at the core of Beijing. It was established in 1925 after the last Emperor of China was evicted from his palace, and opened its doors to the public. Constructed from 1406 to 1420, the museum consists of 980 buildings and covers 72 hectares.',
+        colour = discord.Colour.blue()
+    )
+    china_a_embed.set_thumbnail(url='https://upload.wikimedia.org/wikipedia/commons/1/17/Flickr_-_Shinrya_-_The_Forbidden_City.jpg')
+	
 
 # insert token below
 bot.run("token")
