@@ -30,15 +30,17 @@ async def on_message(message):
 
 @client.command(aliases=['travelbot', 'TravelBot'])
 async def launch_travel(ctx):	
-	await ctx.send("Hi there! You're right on time for the next flight \U00002708")
-	await ctx.send("_ _")
+	await ctx.send("Hi there! You're right on time for our next flight \U00002708")
 	await asyncio.sleep(2)
-	
+
+	await ctx.send("_ _")	
 	question = await ctx.send("Where do you want to go?\n\
 	\U0001f30e - The Americas\n\
 	\U0001f30d - Africa or Europe\n\
 	\U0001f30f - Asia or Australia")
 	
+	
+	await asyncio.sleep(2)
 	emojis = ["\U0001f30e", "\U0001f30d", "\U0001f30f"]
 	for emoji in emojis:
 		await question.add_reaction(emoji)
@@ -60,7 +62,8 @@ async def launch_travel(ctx):
 	\U0001f1e8\U0001f1e6 - Montréal, Canada\n\
 	\U0001f1f2\U0001f1fd - Mexico City, Mexico\n\
 	\U0001f1e8\U0001f1fa - Havana, Cuba")
-
+		
+		await asyncio.sleep(2)
 		emoji2_a = ["\U0001f1e8\U0001f1e6","\U0001f1f2\U0001f1fd","\U0001f1e8\U0001f1fa"]
 		for emoji in emoji2_a:
 			await question2_a.add_reaction(emoji)
@@ -70,7 +73,8 @@ async def launch_travel(ctx):
 		await ctx.send("_ _")
 		await ctx.send("Spiriting you to Africa or Europe!")
 		await ctx.send("_ _")
-	
+		
+		await asyncio.sleep(2)
 		question2_b = await ctx.send("Which city would you like to visit?\n\
 	\U0001f1ff\U0001f1e6 - Cape Town, South Africa\n\
 	\U0001f1ea\U0001f1f8 - Barcelona, Spain\n\
@@ -86,6 +90,7 @@ async def launch_travel(ctx):
 		await ctx.send("I hear Asia and Australia are lovely this time of year!")
 		await ctx.send("_ _")
 
+		await asyncio.sleep(2)
 		question2_c = await ctx.send("Which city would you like to visit?\n\
 	\U0001f1e8\U0001f1f3 - Beijing, China\n\
 	\U0001f1f5\U0001f1ed - Manila, Philippines\n\
@@ -322,13 +327,13 @@ _Forbidden_City.jpg"
 zusxcm5umbYM_I_Gx5DxsiMCUvACLcB/s1600/Dan%2BBau6.jpeg"		
 
 	await asyncio.sleep(2)
-	
 	await ctx.send("_ _")
 	question3 = await ctx.send("What would you like from this city?\n\
 	\U0001f9ed - Area\n\
 	\U0001f37d - Food\n\
 	\U0001f3b5 - Music")
 
+	await asyncio.sleep(2)
 	emoji3 = ["\U0001f9ed","\U0001f37d","\U0001f3b5"]
 	for emoji in emoji3:
 		await question3.add_reaction(emoji)
