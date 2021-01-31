@@ -12,9 +12,12 @@ async def on_ready():
 
 @client.event
 async def on_reaction_add(reaction, user):
+	# don't do anything if the user who reacted to the message is a bot
 	if user.bot:
 		return
 
+# something we wanted to implement but couldn't figure out (we don't know
+# how to invoke a command from an event)
 '''
 @client.event
 async def on_message(message):
@@ -26,84 +29,123 @@ async def on_message(message):
 	await client.process_commands(message)	
 '''
 
-@client.command(aliases=['travelbot', 'TravelBot'])
+# the bot's main command
+@client.command()
 async def launch_travel(ctx):	
 	await ctx.send("Hi there! You're right on time for our next flight \U00002708")
 	await asyncio.sleep(2)
-
-	await ctx.send("_ _")	
+	await ctx.send("_ _")
+	
+	# displays a list of continent regions to choose from
 	question = await ctx.send("Where do you want to go?\n\
 	\U0001f30e - The Americas\n\
 	\U0001f30d - Africa or Europe\n\
 	\U0001f30f - Asia or Australia")
 	
-	
-	await asyncio.sleep(2)
+	# the bot reacts to the above message with emojis linked to each continent region
 	emojis = ["\U0001f30e", "\U0001f30d", "\U0001f30f"]
 	for emoji in emojis:
 		await question.add_reaction(emoji)
-
-	def check(reaction, user):
-		return not(user.bot)
 	
+	# only satisfied if a non-bot user reacts with an emoji the bot provided above
+	def check(reaction, user):
+		check_bot = not(user.bot)
+		input_valid = (str(reaction.emoji) in emojis)
+		return check_bot and input_valid
+	
+	# waits for a non-bot user to select a continent region
 	continent_react = await client.wait_for('reaction_add', check=check, timeout=60.0)
+	
+	# isolates the emoji that the user reacted with
 	continent = str(continent_react[0])
 	await asyncio.sleep(1)
 
-	# the Americas
+	# if the user selects the Americas by reacting with the Americas emoji
 	if continent == "\U0001f30e":		
 		await ctx.send("_ _")		
 		await ctx.send("The Americas it is!")
 		await ctx.send("_ _")
-
 		await asyncio.sleep(1)
+		
+		# displays a list of cities to choose from
 		question2_a = await ctx.send("Which city would you like to visit?\n\
 	\U0001f1e8\U0001f1e6 - Montréal, Canada\n\
 	\U0001f1f2\U0001f1fd - Mexico City, Mexico\n\
 	\U0001f1e8\U0001f1fa - Havana, Cuba")
 		
-		await asyncio.sleep(1)
+		# the bot reacts to the above message with flag emojis for each city's country
 		emoji2_a = ["\U0001f1e8\U0001f1e6","\U0001f1f2\U0001f1fd","\U0001f1e8\U0001f1fa"]
 		for emoji in emoji2_a:
 			await question2_a.add_reaction(emoji)
 
-	# Africa or Europe
+	# if the user selects Africa or Europe by reacting with that globe emoji
 	elif continent == "\U0001f30d":
 		await ctx.send("_ _")
 		await ctx.send("Spiriting you to Africa or Europe!")
 		await ctx.send("_ _")
-		
 		await asyncio.sleep(1)
+		
+		# displays a list of cities to choose from
 		question2_b = await ctx.send("Which city would you like to visit?\n\
 	\U0001f1ff\U0001f1e6 - Cape Town, South Africa\n\
 	\U0001f1ea\U0001f1f8 - Barcelona, Spain\n\
 	\U0001f1ee\U0001f1f9 - Rome, Italy")
-
-		await asyncio.sleep(1)
+		
+		# the bot reacts to the above message with flag emojis for each city's country
 		emoji2_b = ["\U0001f1ff\U0001f1e6","\U0001f1ea\U0001f1f8","\U0001f1ee\U0001f1f9"]
 		for emoji in emoji2_b:
 			await question2_b.add_reaction(emoji)		
 	
-	# Asia and Australia
+	# if the user selecs Asia or  Australia by reacting with that globe emoji
 	elif continent == "\U0001f30f":
 		await ctx.send("_ _")
 		await ctx.send("I hear Asia and Australia are lovely this time of year!")
 		await ctx.send("_ _")
-
 		await asyncio.sleep(1)
+		
+		# displays a list of cities to choose from
 		question2_c = await ctx.send("Which city would you like to visit?\n\
 	\U0001f1e8\U0001f1f3 - Beijing, China\n\
 	\U0001f1f5\U0001f1ed - Manila, Philippines\n\
 	\U0001f1fb\U0001f1f3 - Hanoi, Vietnam")		
-
-		await asyncio.sleep(1)
+		
+		# the bot reacts to the above message with flag emojis for each city's country
 		emoji2_c = ["\U0001f1e8\U0001f1f3","\U0001f1f5\U0001f1ed","\U0001f1fb\U0001f1f3"]
 		for emoji in emoji2_c:
 			await question2_c.add_reaction(emoji)
 
-	city_react = await client.wait_for('reaction_add', check=check, timeout=60.0)
+	# only satisfied if a non-bot user reacts with an emoji the bot provided above
+	def check2(reaction, user):
+		check_bot = not(user.bot)
+		input_valid = False
+
+		# if the selected continent region is the Americas
+		if continent == "\U0001f30e":
+			# input_valid is True if the emoji is one of the flags given
+			input_valid = (str(reaction.emoji) in ["\U0001f1e8\U0001f1e6",\
+ "\U0001f1f2\U0001f1fd","\U0001f1e8\U0001f1fa"])
+		
+		# if the selected continent region is Africa or Europe
+		elif continent == "\U0001f30d":
+			# input_valid is True if the emoji is one of the flags given
+			input_valid = (str(reaction.emoji) in ["\U0001f1ff\U0001f1e6",\
+ "\U0001f1ea\U0001f1f8","\U0001f1ee\U0001f1f9"])
+
+		# if the selected continent region is Asia or Australia
+		elif continent == "\U0001f30f":
+			# # input_valid is True if the emoji is one of the flags given
+			input_valid = (str(reaction.emoji) in ["\U0001f1e8\U0001f1f3",\
+ "\U0001f1f5\U0001f1ed","\U0001f1fb\U0001f1f3"])
+	                
+		return check_bot and input_valid
+
+	# waits for a non-bot user to select a city
+	city_react = await client.wait_for('reaction_add', check=check2, timeout=60.0)
+	
+	# isolates the emoji the user reacted with
 	city = str(city_react[0])
 
+	# initializing some variables
 	recipe = ""
 	rep_title = ""
 	rep_thumb = ""
@@ -131,7 +173,7 @@ async def launch_travel(ctx):
 		# recipe
 		recipe = "https://www.seasonsandsuppers.ca/authentic-canadian-poutine-recipe/"
 		rep_title = "Poutine"	
-		rep_desc = "Poutine is a dish of french fries and cheese curds topped with a brown gravy. Enjoy!" 		
+		rep_desc = "Poutine is a dish made of french fries, cheese curds, and gravy. Enjoy!" 		
 		rep_thumb = "https://v1.nitrocdn.com/eSLhakvQipAhEWtksvxrnpAZbKWwysTe/assets/static/source\
 /rev-744f298/wp-content/uploads/2014/01/new-poutine-1-1170x.jpg"		
 		# music
@@ -155,14 +197,14 @@ async def launch_travel(ctx):
 		recipe = "https://www.isabeleats.com/chile-relleno-recipe/"
 		rep_title = "Chiles Rellenos"
 		rep_desc = "Chile rellenos (or ‘stuffed peppers‘ in English) are a traditional Mexican dish\
- made from roasted poblano peppers stuffed with cheese, then coated in a fluffy egg batter and fried until\
+ made from roasted poblano peppers stuffed with cheese, coated in a fluffy egg batter, and fried until\
  golden brown. Enjoy!"
 		rep_thumb = "https://www.isabeleats.com/wp-content/uploads/2020/03/chile-rellenos-small-13-650x975.jpg"
 		#music
 		music = "https://www.youtube.com/watch?v=AZRbcVG6WEQ"
 		music_title = "Mexican Mariachi Music"
-		music_desc = "A selection of greatest hits from traditional and popular Mexican music. Waltzes,\
- corridos and popular rancheras in a list without pauses to enjoy in any party or event"
+		music_desc = "A selection of the greatest hits from traditional and popular Mexican music. Waltzes,\
+ corridos, and popular ranchera."
 		music_thumb = "https://www.tripsavvy.com/thmb/-V4Uk1AFzhBey2DzN26GIwIj5xk=/1115x836/smart/filters\
 :no_upscale()/mariachi_getty-5681abcf3df78ccc15b4e325.jpg"
 
@@ -172,15 +214,15 @@ async def launch_travel(ctx):
 		area = "https://goo.gl/maps/YXCuudKwAtYhUnY98"
 		area_title = "Hotel Nacional de Cuba"
 		area_desc = "The Hotel Nacional de Cuba is a historic Spanish eclectic style hotel in Havana,\
- Cuba, opened in 1930. Located on the sea front of the Vedado district, it stands on Taganana Hill, offering\
- commanding views of the sea and the city."
+ Cuba, opening in 1930. Located on the shore of the Vedado district, it stands on Taganana Hill and offers\
+ commanding views of the sea and city."
 		area_thumb = "https://www.beyondtheordinary.co.uk/wp-content/uploads/2019/06/Hotel-Nacional\
 -Havana-Aerial-1600x1021.jpeg"
 		# recipe
 		recipe = "https://www.bonappetit.com/recipe/ropa-vieja"
 		rep_title = "Ropa Vieja"
-		rep_desc = "Ropa vieja is one of the national dishes of Cuba, but is also popular in other\
- areas of the region such as Puerto Rico and Panama, in Spain, and in the Philippines. It consists of shredded\
+		rep_desc = "Ropa vieja is one of the national dishes of Cuba, though it is also popular in other\
+ areas such as Puerto Rico and Panama, in Spain, and in the Philippines. It consists of shredded\
  or pulled stewed beef with vegetables. Enjoy!"
 		rep_thumb = "https://assets.bonappetit.com/photos/59c924d03b3bf713cb638086/1:1/w_2560%2Cc_limit\
 /1017%252520WEB%252520WEEK0869.jpg"
@@ -196,8 +238,8 @@ async def launch_travel(ctx):
 		area = "https://goo.gl/maps/d9CUjwTwrZdvAA8a8"
 		area_title = "New Cape Point Lighthouse"
 		area_desc = "Check out one of the oldest lighthouses in South Africa! Explore the trails and\
- enjoy oceanside views that run alongside this Cabo Tormentosa (Cape of Storms) as named by Bartolomeu Dias\
- in the 15th century"
+ enjoy oceanside views running alongside this Cabo Tormentosa (Cape of Storms), as named by Bartolomeu Dias\
+ in the 15th century."
 		area_thumb = "https://www.lightphotos.net/photos/albums/userpics/10001/normal_170.jpg"
 		# recipe
 		recipe = "https://www.bbcgoodfood.com/recipes/cape-malay-chicken-curry-yellow-rice"
@@ -210,7 +252,7 @@ async def launch_travel(ctx):
 		music = "https://www.youtube.com/watch?v=A1PsDkKzi8M&list=PLhTIvz9wTTu5HQGI4myeSFW2lHwrJHkK4"
 		music_title = "South African Traditional Music"
 		music_desc = "South Africa has a very broad range of styles ranging from marabi (which is the\
- root of south African Jazz) to local highlife, reggae and Zulu choral music known as mbube"
+ root of south African Jazz) to local highlife, reggae, and Zulu choral music known as mbube."
 		music_thumb = "https://www.greyhound.co.za/wp-content/uploads/2018/09/120416041832-zulu-\
 ceremony-horizontal-large-gallery.jpg"		
 
@@ -219,8 +261,8 @@ ceremony-horizontal-large-gallery.jpg"
 		# area
 		area = "https://goo.gl/maps/kUXNASg7vuts4DX99"
 		area_title = "La Sagrada Familia"
-		area_desc = "The Basílica de la Sagrada Família, also known as the Sagrada Família, is a\
- large unfinished Roman Catholic minor basilica in the Eixample district of Barcelona, Catalonia, Spain.\
+		area_desc = "The Basílica de la Sagrada Família, also known as the Sagrada Família, is an\
+ unfinished Roman Catholic minor basilica in the Eixample district of Barcelona, Catalonia, Spain.\
  Designed by Spanish/Catalan architect Antoni Gaudí, his work on the building is part of a UNESCO World\
  Heritage Site"
 		area_thumb = "https://images.adsttc.com/media/images/5cff/5ec5/284d/d16d/6a00/1111/\
@@ -235,18 +277,18 @@ large_jpg/1.jpg?1560239805"
 		music = "https://www.youtube.com/watch?v=HiFFdCBSJr4&list=PL2l5qPra0uFFt0bsuIvgbJ2tG1F7STYKy"
 		music_title = "Rumba Catalana"
 		music_desc = "The Catalan rumba is a genre of music that developed in Barcelona's Romani\
- community beginning in the 1950s and 160s. Its rhythms are derived from the Andalusian flamenco rumba, with\
- influences from Cuban music and rock and roll"
+ community beginning in the 1950s and 1960s. Its rhythms are derived from the Andalusian flamenco rumba, with\
+ influences from Cuban music and rock and roll."
 		music_thumb = "https://www.eventosbarcelona.com/wp-content/uploads/flamencorumba.jpg"
 
 	elif city == rome:
 		col = "magenta"
 		# area
 		area = "https://goo.gl/maps/Ce8B9F7kZsb4TkZB7"
-		area_title = "Colosseum"
+		area_title = "The Colosseum"
 		area_desc = "The Colosseum is an oval amphitheatre in the centre of the city of Rome,\
  Italy, just east of the Roman Forum. It's the largest ancient amphitheatre ever built and is still\
- the largest standing amphitheater in the world today, despite its age"
+ the largest standing amphitheater in the world today, despite its age."
 		area_thumb = "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Colosseo_2020\
 .jpg/1200px-Colosseo_2020.jpg"
 		# recipe
@@ -270,7 +312,7 @@ large_jpg/1.jpg?1560239805"
 		area_title = "The Palace Museum"
 		area_desc = "The Palace Museum is a national museum housed in the Forbidden City at the\
  core of Beijing. It was established in 1925 after the last Emperor of China was evicted from his palace,\
- and opened its doors to the public. Constructed from 1406 to 1420, the museum consists of 980 buildings\
+ opening its doors to the public. Constructed from 1406 to 1420, the museum consists of 980 buildings\
  and covers 72 hectares."
 		area_thumb = "https://upload.wikimedia.org/wikipedia/commons/1/17/Flickr_-_Shinrya_-_The\
 _Forbidden_City.jpg"
@@ -285,7 +327,7 @@ _Forbidden_City.jpg"
 		music = "https://www.youtube.com/watch?v=7D-Nj64uMW8"
 		music_title = "Traditional Chinese Music"
 		music_desc = "The flute, especially the bone flute, is one of the oldest musical instruments\
- known. Examples of Paleolithic bone flutes have survived for more than 40,000 years, to be discovered by\
+ known. Some Paleolithic bone flutes had survived for more than 40,000 years when they were discovered by\
  archaeologists in China."	
 		music_thumb = "https://upload.wikimedia.org/wikipedia/commons/0/02/Bansuri_bamboo_flute_23inch.jpg"
 
@@ -301,26 +343,25 @@ _Forbidden_City.jpg"
 		# recipe
 		recipe = "https://www.foxyfolksy.com/pandesal-recipe/"
 		rep_title = "Pandesal"
-		rep_desc = "Pandesal is a classic Filipino bread roll that is particularly eaten for\
- breakfast. It is soft and airy and slightly sweet. Normally eaten as a sandwich with filling. Enjoy!"
+		rep_desc = "Pandesal is a classic Filipino bread roll often eaten for\
+ breakfast. It's soft and airy and slightly sweet. Enjoy!"
 		rep_thumb = "https://www.foxyfolksy.com/wp-content/uploads/2015/09/pandesal.jpg"
 		# music
 		music = "https://www.youtube.com/watch?v=7zUd96I4JN8"
 		music_title = "Philippines Kundiman Classical Songs"
-		music_desc = "Kundiman is a genre of traditional Filipino love songs. The lyrics of the\
- kundiman are written in Tagalog. The melody is characterized by a smooth, flowing and gentle rhythm with\
- dramatic intervals. Kundiman was the traditional means of serenade in the Philippines."
+		music_desc = "Kundiman is a genre of traditional Filipino love songs. Its lyrics are written \
+in Tagalog and its melody is characterized by a smooth, flowing and rhythm. Kundiman was the traditional\
+ means of serenade in the Philippines."
 		music_thumb = "https://judebgallery.files.wordpress.com/2015/08/thai-musical-instruments.jpg"
 
 	elif city == hanoi:
-		col = "yellow"
+		col = "purple"
 		# area
 		area = "https://goo.gl/maps/pMhjRaE3CmrFzGQXA"
 		area_title = "Temple of Literature"
 		area_desc = "Văn Miếu is a temple dedicated to Confucius in Hanoi, northern Vietnam.\
  The temple also hosts the Imperial Academy, Vietnam\'s first national university. The temple was built\
- in 1070 at the time of Emperor Lý Thánh Tông. It is one of several temples in Vietnam which is dedicated\
- to Confucius, sages and scholars"
+ in 1070 at the time of Emperor Lý Thánh Tông."
 		area_thumb = "https://static.toiimg.com/photo/58747476.cms"
 		# recipe
 		recipe = "https://www.allrecipes.com/recipe/228443/authentic-pho/"
@@ -332,31 +373,43 @@ _Forbidden_City.jpg"
 		music = "https://www.youtube.com/watch?v=lhS0B-8j02g"
 		music_title = "Vietnamese Dan Bau Music"
 		music_desc = "The đàn bầu is a Vietnamese stringed instrument, taking the form of a\
- monochord (one-string) zither"
+ monochord (one-string) zither."
 		music_thumb = "https://4.bp.blogspot.com/-x-xw0A2ZdWU/WHRQ-FpLpVI/AAAAAAAAEHY/298Z4F\
 zusxcm5umbYM_I_Gx5DxsiMCUvACLcB/s1600/Dan%2BBau6.jpeg"		
 
 	await asyncio.sleep(1)
 	await ctx.send("_ _")
-	question3 = await ctx.send("What would you like from this city?\n\
+	
+	# displays a list of activities to choose from
+	question3 = await ctx.send("What would you like to see in the city?\n\
 	\U0001f9ed - Area\n\
 	\U0001f37d - Food\n\
 	\U0001f3b5 - Music")
-
-	await asyncio.sleep(1)
+	
+	# the bot reacts to the above message with emojis for each activity
 	emoji3 = ["\U0001f9ed","\U0001f37d","\U0001f3b5"]
 	for emoji in emoji3:
 		await question3.add_reaction(emoji)
 
-	activity_react = await client.wait_for('reaction_add', check=check, timeout=60.0)
+	# only satisfied if a non-bot user reacts with an emoji the bot provided above
+	def check3(reaction, user):
+		check_bot = not(user.bot)
+		input_valid = (str(reaction.emoji) in emoji3)
+		return check_bot and input_valid
+
+	# waits for a non-bot user to select an activity
+	activity_react = await client.wait_for('reaction_add', check=check3, timeout=60.0)
+	
+	# isolates the emoji that the user reacted with
 	activity = str(activity_react[0])
 	
+	# initializing some variables
 	title = ""
 	desc = ""
 	thumb = ""
 	link = ""
 	
-	# area
+	# if the user chose to view the city's area
 	if activity == "\U0001f9ed":
 		link = area
 		title = area_title
@@ -364,7 +417,7 @@ zusxcm5umbYM_I_Gx5DxsiMCUvACLcB/s1600/Dan%2BBau6.jpeg"
 		thumb = area_thumb
 		name = "Location"	
 	
-	# food
+	# if the user chose to view the city's food
 	elif activity == "\U0001f37d":
 		link = recipe
 		title = rep_title
@@ -372,7 +425,7 @@ zusxcm5umbYM_I_Gx5DxsiMCUvACLcB/s1600/Dan%2BBau6.jpeg"
 		thumb = rep_thumb
 		name = "Recipe"
 	
-	# music
+	# if the user chose to view the city's music
 	elif activity == "\U0001f3b5":
 		link = music
 		title = music_title
@@ -384,6 +437,8 @@ zusxcm5umbYM_I_Gx5DxsiMCUvACLcB/s1600/Dan%2BBau6.jpeg"
 	await ctx.send("_ _")
 	await ctx.send("This might be of interest:")	
 
+	# based on the chosen city, its col value, and the activity
+	# chosen, displays an embed
 	if col == "magenta":
 		embed = discord.Embed(title = title, description = desc, 
 		colour = discord.Colour.magenta())
@@ -393,27 +448,30 @@ zusxcm5umbYM_I_Gx5DxsiMCUvACLcB/s1600/Dan%2BBau6.jpeg"
 	elif col == "orange":
 		embed = discord.Embed(title = title, description = desc,
 		colour = discord.Colour.orange())
-	elif col == "yellow":
+	elif col == "purple":
 		embed = discord.Embed(title = title, description = desc,
-		colour = dicord.Colour.yellow())
+		colour = discord.Colour.purple())
 	elif col == "blue":
 		embed = discord.Embed(title = title, description = desc,
 		colour = discord.Colour.blue())
 	elif col == "dark_teal":
 		embed = discord.Embed(title = title, description = desc,
 		colour = discord.Colour.dark_teal())
-	elif col == "dark magenta":
+	elif col == "dark_magenta":
 		embed = discord.Embed(title = title, description = desc,
 		colour = discord.Colour.dark_magenta())
-	elif col == "dark red":
+	elif col == "dark_red":
 		embed = discord.Embed(title = title, description = desc,
 		colour = discord.Colour.dark_red())
 
+	# setting other aspects of the embed
 	embed.set_thumbnail(url=thumb)
 	embed.add_field(name=name, value=link, inline=True)
-
+	
+	# the bot sends the embed in a message
 	await ctx.send(embed=embed)
 	
+	# end of the command
 	await asyncio.sleep(4)
 	await ctx.send("_ _")
 	await ctx.send("Oh!")
