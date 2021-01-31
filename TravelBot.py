@@ -10,8 +10,6 @@ client = commands.Bot(command_prefix = '.')
 async def on_ready():
 	print("Online")
 
-choice = ""
-
 @client.event
 async def on_reaction_add(reaction, user):
 	if user.bot:
@@ -112,7 +110,7 @@ async def launch_travel(ctx):
 	rep_desc = ""
 
 	# the unicodes of each city
-	vietnam = "\U0001f1fb\U0001f1f3"
+	hanoi = "\U0001f1fb\U0001f1f3"
 	montreal = "\U0001f1e8\U0001f1e6"
 	mexico_city = "\U0001f1f2\U0001f1fd"		
 	havana = "\U0001f1e8\U0001f1fa"
@@ -123,6 +121,7 @@ async def launch_travel(ctx):
 	manila = "\U0001f1f5\U0001f1ed"
 	
 	if city == montreal:
+		col = "red"
 		# area
 		area = "https://goo.gl/maps/7M5Qrc4YBpZnHzCGA"
 		area_title = "McGill University"
@@ -143,6 +142,7 @@ async def launch_travel(ctx):
 -hero.jpg"
 
 	elif city == mexico_city: 
+		col = "orange"
 		# area
 		area = "https://goo.gl/maps/ykqEm86xtAczJxbP7"
 		area_title = "Metropolitan Cathedral of Mexico City"
@@ -167,6 +167,7 @@ async def launch_travel(ctx):
 :no_upscale()/mariachi_getty-5681abcf3df78ccc15b4e325.jpg"
 
 	elif city == havana:
+		col = "dark_magenta"
 		# area
 		area = "https://goo.gl/maps/YXCuudKwAtYhUnY98"
 		area_title = "Hotel Nacional de Cuba"
@@ -190,6 +191,7 @@ async def launch_travel(ctx):
 		music_thumb = "https://mentalitch.com/wp-content/uploads/2019/12/salsa-music-band-in-cuba.jpg"
 	
 	elif city == cape_town:
+		col = "dark_teal"
 		# area
 		area = "https://goo.gl/maps/d9CUjwTwrZdvAA8a8"
 		area_title = "New Cape Point Lighthouse"
@@ -213,6 +215,7 @@ async def launch_travel(ctx):
 ceremony-horizontal-large-gallery.jpg"		
 
 	elif city == barcelona:
+		col = "dark_red"
 		# area
 		area = "https://goo.gl/maps/kUXNASg7vuts4DX99"
 		area_title = "La Sagrada Familia"
@@ -237,11 +240,12 @@ large_jpg/1.jpg?1560239805"
 		music_thumb = "https://www.eventosbarcelona.com/wp-content/uploads/flamencorumba.jpg"
 
 	elif city == rome:
+		col = "magenta"
 		# area
 		area = "https://goo.gl/maps/Ce8B9F7kZsb4TkZB7"
 		area_title = "Colosseum"
-		area_desc = "The Colosseum, is an oval amphitheatre in the centre of the city of Rome,\
- Italy, just east of the Roman Forum and is the largest ancient amphitheatre ever built, and is still\
+		area_desc = "The Colosseum is an oval amphitheatre in the centre of the city of Rome,\
+ Italy, just east of the Roman Forum. It's the largest ancient amphitheatre ever built and is still\
  the largest standing amphitheater in the world today, despite its age"
 		area_thumb = "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Colosseo_2020\
 .jpg/1200px-Colosseo_2020.jpg"
@@ -260,6 +264,7 @@ large_jpg/1.jpg?1560239805"
 		music_thumb = "https://i.ytimg.com/vi/aiENvviVSO4/maxresdefault.jpg"
 
 	elif city == beijing:
+		col = "red"
 		#area
 		area = "https://goo.gl/maps/BojWyPDzis3YGTzm8"
 		area_title = "The Palace Museum"
@@ -285,6 +290,7 @@ _Forbidden_City.jpg"
 		music_thumb = "https://upload.wikimedia.org/wikipedia/commons/0/02/Bansuri_bamboo_flute_23inch.jpg"
 
 	elif city == manila: 
+		col = "blue"
 		# area
 		area = "https://goo.gl/maps/MsNe3y7wCS6jwQ8TA"
 		area_title = "Metro Manila"
@@ -306,7 +312,8 @@ _Forbidden_City.jpg"
  dramatic intervals. Kundiman was the traditional means of serenade in the Philippines."
 		music_thumb = "https://judebgallery.files.wordpress.com/2015/08/thai-musical-instruments.jpg"
 
-	elif city == vietnam:
+	elif city == hanoi:
+		col = "yellow"
 		# area
 		area = "https://goo.gl/maps/pMhjRaE3CmrFzGQXA"
 		area_title = "Temple of Literature"
@@ -375,13 +382,32 @@ zusxcm5umbYM_I_Gx5DxsiMCUvACLcB/s1600/Dan%2BBau6.jpeg"
 		
 	await asyncio.sleep(1)
 	await ctx.send("_ _")
-	await ctx.send("This might be of interest:")
+	await ctx.send("This might be of interest:")	
 
-	embed = discord.Embed(
-		title = title,
-		description = desc,
-		colour = discord.Colour.blue()
-	)
+	if col == "magenta":
+		embed = discord.Embed(title = title, description = desc, 
+		colour = discord.Colour.magenta())
+	elif col == "red":
+		embed = discord.Embed(title = title, description = desc,
+		colour = discord.Colour.red())
+	elif col == "orange":
+		embed = discord.Embed(title = title, description = desc,
+		colour = discord.Colour.orange())
+	elif col == "yellow":
+		embed = discord.Embed(title = title, description = desc,
+		colour = dicord.Colour.yellow())
+	elif col == "blue":
+		embed = discord.Embed(title = title, description = desc,
+		colour = discord.Colour.blue())
+	elif col == "dark_teal":
+		embed = discord.Embed(title = title, description = desc,
+		colour = discord.Colour.dark_teal())
+	elif col == "dark magenta":
+		embed = discord.Embed(title = title, description = desc,
+		colour = discord.Colour.dark_magenta())
+	elif col == "dark red":
+		embed = discord.Embed(title = title, description = desc,
+		colour = discord.Colour.dark_red())
 
 	embed.set_thumbnail(url=thumb)
 	embed.add_field(name=name, value=link, inline=True)
@@ -397,4 +423,4 @@ zusxcm5umbYM_I_Gx5DxsiMCUvACLcB/s1600/Dan%2BBau6.jpeg"
 	await ctx.send("See you next time. \U00002708")
 
 # insert token below
-client.run("token")
+client.run("ODA1MDc3MjcxNzM5MjM2MzUy.YBVoow.pmx3lQxhIk5sKUgnXCkK0Q-uCfA")
